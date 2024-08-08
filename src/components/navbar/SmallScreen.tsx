@@ -24,10 +24,10 @@ import {
 import AnimatedSubscribeButtonDemo from '@/components/button/SubscribeButton';
 
 
-const SmallScreenNavbar = ({ isAuth }: {isAuth: boolean}) => {
+const SmallScreenNavbar = ({ isAuth }: { isAuth: boolean }) => {
 
     return (
-        <Sheet className='w-full bg-white'>
+        <Sheet>
             <section className='bg-[#F8F8F8]  shadow shadow-blue-100 grid grid-cols-1 mb-3 px-2 py-4'>
                 <aside className='flex justify-between items-center h-10/12'>
                     <Link href='/'>

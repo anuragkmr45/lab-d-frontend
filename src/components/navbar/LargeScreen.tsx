@@ -9,7 +9,7 @@ import { SiWhatsapp } from "react-icons/si";
 import { RxAvatar } from "react-icons/rx";
 import { Button } from "@/components/ui/button";
 
-const LargeScreenNavbar = ({ isAuth }) => {
+const LargeScreenNavbar = ({ isAuth }: { isAuth: boolean }) => {
 
     const [isSticky, setSticky] = useState(false);
     const location = false;
@@ -59,7 +59,7 @@ const LargeScreenNavbar = ({ isAuth }) => {
                     />
                 </>
                 <div className='flex justify-evenly items-center'>
-                    <Button variant="successOutline" className='space-x-3 shadow'>
+                    <Button variant="outline" className='space-x-3 shadow'>
                         <SiWhatsapp />
                         <span>Support</span>
                     </Button>
