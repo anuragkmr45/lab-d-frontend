@@ -1,11 +1,8 @@
+import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { FaDna } from "react-icons/fa";
 import { TbReport } from "react-icons/tb";
 import { PiCurrencyDollarBold } from "react-icons/pi";
-// import ShinyButton from "@/components/magicui/shiny-button";
-
-
-import Link from 'next/link';
 
 type cardProps = {
     title: string;
@@ -104,7 +101,7 @@ const LowerCard = ({ parameters, link = '/' }: LowerCardProps) => {
                     <Button className=' bg-transparent font-semibold  text-[#006D77] hover:bg-[#006D77] hover:text-white shadow-sm shadow-[#006D77] transition-all duration-200 ease-in-out'> View Details</Button>
                 </Link>
                 <Link href='/book-test-deatils'>
-                    <Button className='bg-gradient-to-tr from-[#ff8153] to-[#f9d2c5] shadow-lg '> Book Details</Button>
+                    <Button className='bg-gradient-to-tr from-[#ff8153] to-[#f9d2c5] shadow-lg hover:scale-105 transition-all duration-200 ease-in-out'> Book Details</Button>
                 </Link>
             </div>
         </div>

@@ -15,29 +15,37 @@ const Footer = () => {
                         <ul className='space-y-0 md:space-y-2'>
                             <li>
                                 <Link href="/about">
-                                    <span className='text-[#4F585E] font-normal text-sm'>About Us</span>
+                                    <span className='text-[#4F585E] font-normal text-sm hover:text-[#6197ba] transition-all duration-200 ease-in-out'>About Us</span>
                                 </Link>
                             </li>
                             <li>
                                 <Link href="/contact">
-                                    <span className='text-[#4F585E] font-normal text-sm'> Contact Us</span>
+                                    <span className='text-[#4F585E] font-normal text-sm hover:text-[#6197ba] transition-all duration-200 ease-in-out'> Contact Us</span>
                                 </Link>
                             </li>
-                            <li>
+                            {/* <li>
                                 <Link href="/contact">
                                     <span className='text-[#4F585E] font-normal text-sm'>Articles</span>
                                 </Link>
-                            </li>
+                            </li> */}
                         </ul>
                     </aside>
                     <aside className='space-y-1 md:space-y-4'>
                         <h1 className='text-[#4F585E] text-xl font-semibold'>Our Services</h1>
                         <ul className='space-y-0 md:space-y-2'>
                             <li>
-                                <span className='text-[#4F585E] font-normal text-sm'>Lab Tests</span>
+                                <Link href="/general-diagnostics">
+                                    <span className='text-[#4F585E] font-normal text-sm hover:text-[#6197ba] transition-all duration-200 ease-in-out'>General Diagnostics</span>
+                                </Link>
+
                             </li>
                             <li>
-                                <span className='text-[#4F585E] font-normal text-sm'>Find Nearest Collection Centre</span>
+                                <Link href="/organ-related">
+                                    <span className='text-[#4F585E] font-normal text-sm hover:text-[#6197ba] transition-all duration-200 ease-in-out'>Organ Related Test</span>
+                                </Link>
+                            </li>
+                            <li>
+                                <span className='text-[#4F585E] font-normal text-sm hover:text-[#6197ba] transition-all duration-200 ease-in-out'>Find Nearest Collection Centre</span>
                             </li>
                         </ul>
                     </aside>

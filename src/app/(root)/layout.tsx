@@ -21,7 +21,6 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="text-black bg-white">
-        {/* <body className={`${inter.className} text-black bg-white`}> */}
         <Navbar />
         <main className="py-24 overflow-x-hidden mb-32 md:mb-0">
           {children}

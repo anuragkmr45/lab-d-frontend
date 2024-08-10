@@ -3,7 +3,6 @@ import "../../globals.css";
 
 import Navbar from "@/components/navbar/index";
 import Footer from "@/components/footer/index";
-import BottomNavigation from "@/components/bottom-navigation/index";
 
 // const inter = Inter({ subsets: ["latin"] });
 
@@ -25,7 +24,6 @@ export default function PatientRecordLayout({
                 <main className="pt-32 lg:py-16 overflow-x-hidden mb-32 md:mb-0">
                     {children}
                 </main>
-                <BottomNavigation />
                 <Footer />
             </body>
         </html>
