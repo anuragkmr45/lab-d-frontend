@@ -31,7 +31,7 @@ const HeroSection = () => {
     ]
 
     return (
-        <section className='px-2 md:px-10 pt-0 md:pt-2'>
+        <section className='px-2 md:px-10 pt-0 md:pt-2 space-y-4'>
             <div className='bg-gradient-to-br from-[#F0F0F0] to-[#F1F1F1] md:to-[#FFFFFF] min-h-fit rounded-3xl  p-4 md:px-8 md:py-4'>
                 <div className="grid grid-cols-1 md:grid-cols-5 gap-2">
                     <div className='col-span-3 m-auto'>

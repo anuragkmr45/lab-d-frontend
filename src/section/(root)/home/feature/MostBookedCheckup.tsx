@@ -92,7 +92,7 @@ const MostBookedCheckup = () => {
                             {
                                 organData.map((data) => {
                                     return (
-                                        <Link href={data.link} key={data.key} className='flex flex-col justify-center items-center align-middle space-y-2 w-full'>
+                                        <Link href={data.link} key={data.key} className='flex flex-col justify-center items-center align-middle space-y-2 w-full hover:scale-110 transition-all duration-200 ease-in-out'>
                                             <Image src={data.img} alt='lab-d' height={65} width={65} className='shadow-sm' />
                                             <h2 className='text-[#707070] font-bold text-sm flex text-wrap text-center'>
                                                 {data.title}

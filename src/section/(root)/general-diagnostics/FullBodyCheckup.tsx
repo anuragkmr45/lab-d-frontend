@@ -5,8 +5,6 @@ import {
     Carousel,
     CarouselContent,
     CarouselItem,
-    CarouselNext,
-    CarouselPrevious,
 } from "@/components/ui/carousel"
 
 import CheckupTypeCard from '@/components/cards/checkup-type/LayredType';
@@ -118,8 +116,8 @@ const FullBodyCheckUp = () => {
                             })
                         }
                     </CarouselContent>
-                    <CarouselPrevious className='shadow-xl hidden md:block m-auto' />
-                    <CarouselNext className='shadow-xl hidden md:block m-auto' />
+                    {/* <CarouselPrevious className='shadow-xl hidden md:block m-auto' />
+                    <CarouselNext className='shadow-xl hidden md:block m-auto' /> */}
                 </Carousel>
             </div>
         </div>

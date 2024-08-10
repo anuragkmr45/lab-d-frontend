@@ -2,7 +2,7 @@ import Image from 'next/image';
 
 import HeroSection from '@/section/(root)/general-diagnostics/Hero';
 import FullBodyCheckUp from '@/section/(root)/general-diagnostics/FullBodyCheckup';
-import MostBookedCheckup from '@/section/(root)/general-diagnostics/CuratedCheckups';
+import MostBookedCheckup from '@/section/(root)/home/feature/MostBookedCheckup';
 import PopularCheckupsByArea from '@/section/(root)/general-diagnostics/PopularCheckupsbyArea';
 
 const GeneralDiagnostics = () => {
@@ -47,7 +47,7 @@ const GeneralDiagnostics = () => {
     ];
 
     return (
-        <main className='space-y-6'>
+        <main className='space-y-10'>
             <HeroSection />
             <FullBodyCheckUp />
             <MostBookedCheckup />

@@ -92,13 +92,11 @@ const TopBookedSessions = () => {
         },
     ]
 
-    const initialDisplayCount = 3;
-
     const handleToggleShowMore = () => { setShowAll(!showAll) }
 
     return (
         <>
-            <section className='bg-gradient-to-r from-[#EDF6F9] via-[#FDFDFD] to-[#EDF6F9] py-12 px-1 md:px-16'>
+            <section className='bg-gradient-to-r from-[#EDF6F9] via-[#FDFDFD] to-[#EDF6F9] py-12 px-3 md:px-16'>
                 <div className='flex justify-between items-center'>
                     <h1 className='text-xl font-semibold'>Top Booked Tests (40)</h1>
                     <Button variant='outline' className='shadow-md text-[#106C89]' onClick={handleToggleShowMore}>
@@ -108,7 +106,7 @@ const TopBookedSessions = () => {
 
                 <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2'>
                     {
-                        bookedTest.slice(0, showAll ? bookedTest.length : initialDisplayCount).map((data) => {
+                        bookedTest.slice(0, showAll ? bookedTest.length : 3).map((data) => {
                             return (
                                 <CheckupTypeCard
                                     key={data.key}

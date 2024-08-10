@@ -39,7 +39,9 @@ const BottomNavigation = () => {
     const navItemActiveStyle: string = 'flex flex-col justify-center items-center transition-all duration-300 space-y-2 ease-in-out'
     const navItemInActiveStyle: string = 'flex flex-col justify-center items-center opacity-35 transition-all space-y-2 duration-300 ease-in-out'
 
-    return (
+    const shouldShowBottomNav = BottomNavigationContent.some(item => item.link === pathname);
+
+    return shouldShowBottomNav ? (
         <div className="w-full sticky bottom-0 block md:hidden">
             <div className="w-full h-[70px] rounded-t-2xl shadow-2xl text-center bg-[#F8F8F8] absolute bottom-0 grid grid-cols-3 gap-2 z-30">
                 {
@@ -56,7 +58,7 @@ const BottomNavigation = () => {
             </div>
             <div className='w-full bg-black h-2 rounded-lg' />
         </div>
-    )
+    ) : null;
 }
 
 export default BottomNavigation

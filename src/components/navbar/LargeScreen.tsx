@@ -8,11 +8,13 @@ import { IoLocationOutline } from "react-icons/io5";
 import { SiWhatsapp } from "react-icons/si";
 import { RxAvatar } from "react-icons/rx";
 import { Button } from "@/components/ui/button";
+import SearchBar from "@/components/searchbar";
 
 const LargeScreenNavbar = ({ isAuth }: { isAuth: boolean }) => {
 
     const [isSticky, setSticky] = useState(false);
     const location = false;
+    const authenticated: boolean = true;
 
     const handleScroll = () => {
         const scrollPosition = window.scrollY;
@@ -33,33 +35,31 @@ const LargeScreenNavbar = ({ isAuth }: { isAuth: boolean }) => {
     return (
         <div className={`w-screen shadow ${navbarStickyEffect}`}>
             <div className='grid grid-cols-3 gap-4 w-full py-2'>
-                <div className='flex items-center justify-around'>
+                <div className='flex items-center justify-between mx-2'>
                     <Link href='/'>
                         <Image src='/assets/logos/logo.png' alt='LabD' width={60} height={60} />
                     </Link>
-                    <div>
-                        <div className='flex items-center py-2 px-3 cursor-pointer rounded-md hover:shadow-lg ease-in-out duration-200 transition-all'>
-                            <IoLocationOutline />
-                            <span>Select Location</span>
-                        </div>
-                        {
-                            location && (
-                                <div>Kukatpally</div>
-                            )
-                        }
-                    </div>
+                    {
+                        authenticated && (
+                            <>
+                                <div className='flex items-center py-2 px-3 cursor-pointer rounded-md hover:shadow-lg ease-in-out duration-200 transition-all'>
+                                    <IoLocationOutline />
+                                    <span>Select Location</span>
+
+                                </div>
+                                {
+                                    location && (
+                                        <div>Kukatpally</div>
+                                    )
+                                }
+
+                            </>
+                        )
+                    }
                 </div>
-                <>
-                    <input
-                        className=' shadow-sm rounded-3xl px-4 w-full h-full'
-                        type="search"
-                        name=""
-                        id=""
-                        placeholder='Search for Test ...'
-                    />
-                </>
+                <SearchBar />
                 <div className='flex justify-evenly items-center'>
-                    <Button variant="outline" className='space-x-3 shadow'>
+                    <Button variant="outline" className='space-x-3 shadow shadow-green-300 text-green-600'>
                         <SiWhatsapp />
                         <span>Support</span>
                     </Button>

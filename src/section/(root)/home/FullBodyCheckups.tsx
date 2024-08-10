@@ -4,15 +4,12 @@ import {
     Carousel,
     CarouselContent,
     CarouselItem,
-    CarouselNext,
-    CarouselPrevious,
 } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
 import CheckupTypeCard from "@/components/cards/checkup-type/LayredType";
 
 import Image from "next/image";
 import Link from "next/link";
-
 
 const FullBodyCheckUps = () => {
 
@@ -121,8 +118,8 @@ const FullBodyCheckUps = () => {
                             })
                         }
                     </CarouselContent>
-                    <CarouselPrevious className='shadow-xl hidden md:block m-auto' />
-                    <CarouselNext className='shadow-xl hidden md:block m-auto' />
+                    {/* <CarouselPrevious className='shadow-xl hidden md:block m-auto' />
+                    <CarouselNext className='shadow-xl hidden md:block m-auto' /> */}
                 </Carousel>
             </section>
             <section className='grid grid-cols-1 md:grid-cols-2 gap-4 mx-auto w-11/12'>

@@ -75,7 +75,7 @@ const BodyOrgans = () => {
                 {
                     organData.map((data: organDataType) => {
                         return (
-                            <Link href={data.link} key={data.key} className='flex flex-col justify-center items-center align-middle space-y-2 w-full'>
+                            <Link href={data.link} key={data.key} className='flex flex-col justify-center items-center align-middle space-y-2 w-full hover:scale-110 transition-all duration-200 ease-in-out'>
                                 <Image src={data.img} alt='csd' height={80} width={80} />
                                 <h2 className='text-[#707070] font-semibold text-sm flex flex-wrap text-center'>
                                     {data.title}

@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+// import { Inter } from "next/font/google";
 import "../globals.css";
 
-const inter = Inter({ subsets: ["latin"] });
+// const inter = Inter({ subsets: ["latin"] });
 
 import Navbar from "@/components/navbar/index";
 import Footer from "@/components/footer/index";
@@ -23,7 +23,7 @@ export default function RootLayout({
       <body className="text-black bg-white">
         {/* <body className={`${inter.className} text-black bg-white`}> */}
         <Navbar />
-        <main className="pt-32 lg:py-20 overflow-x-hidden mb-32 md:mb-0">
+        <main className="py-24 overflow-x-hidden mb-32 md:mb-0">
           {children}
         </main>
         <BottomNavigation />

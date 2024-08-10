@@ -9,7 +9,7 @@ import QuickLinks from '@/section/(root)/book-test-dtls/QuickLinks';
 const BookTestDetails = () => {
     return (
         <main className="flex relative w-full h-full">
-            <aside className="w-full lg:w-2/3 mx-2">
+            <aside className="w-full space-y-8 lg:w-2/3 px-4 md:px-8">
                 <Hero />
                 <ContentDetails />
                 <SimilarPackage />

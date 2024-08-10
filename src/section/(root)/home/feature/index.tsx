@@ -1,12 +1,12 @@
 import MostBookedCheckup from './MostBookedCheckup';
-import VitalBodyOrgans from './VitalBodyOrgans';
+// import VitalBodyOrgans from './VitalBodyOrgans';
 
 const FeatureSection = () => {
 
     return (
         <div className='space-y-8'>
             <MostBookedCheckup />
-            <VitalBodyOrgans />
+            {/* <VitalBodyOrgans /> */}
         </div>
     )
 }

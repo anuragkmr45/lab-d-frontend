@@ -3,7 +3,7 @@ import LargeScreenNavbar from './LargeScreen';
 
 const Navbar = () => {
 
-    const isAuth = false;
+    const isAuth = true;
 
     return (
         <header className='fixed top-0 w-screen z-40'>

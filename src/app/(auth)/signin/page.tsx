@@ -1,6 +1,4 @@
 import Image from 'next/image';
-
-// import LargeScreen from "./LargeScreen";
 import SmallScreen from "@/section/(auth)/signin/SmallScreen";
 
 const SignIn = () => {

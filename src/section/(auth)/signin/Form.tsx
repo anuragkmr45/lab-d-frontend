@@ -21,27 +21,33 @@ const Form = () => {
         }, 2000);
     }
 
-    // const handleInputChange = (event) => {
-    //     const value = event.target.value;
-    //     if (value.length < 11) {
+    const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        // Allow only numbers and limit to 10 digits
+        const inputValue = event.target.value.replace(/\D/g, ''); // Remove non-numeric characters
+        setInputValue(inputValue.substring(0, 10)); // Limit to 10 digits
+    };
 
-    //     }
-    // };
 
     return (
         <div className="flex flex-col justify-around space-y-16">
             <div className="space-y-5">
                 <h1 className="font-bold text-2xl" >Sign In</h1>
-                <Input
-                    ref={inputRef}
-                    type="tel"
-                    placeholder="+91 _ _ _ _ _ _ _ _ _ _"
-                    value={inputValue}
-                    className="ring-offset-background focus-visible:outline-none"
-                />
+                <div className="flex justify-start items-center space-x-4 px-2">
+                    <span>+91</span>
+                    <Input
+                        ref={inputRef}
+                        type="tel"
+                        maxLength={10}
+                        pattern="[0-9]{10}"
+                        placeholder=" _ _ _ _ _ _ _ _ _ _"
+                        value={inputValue}
+                        className="ring-offset-background focus-visible:outline-none"
+                        onChange={(e) => handleInputChange(e)}
+                    />
+                </div>
                 <label className="text-[#006D77] text-xs mt-6">OTP will be send to this number by SMS.</label>
                 <div className="flex space-x-2">
-                    <Checkbox id="terms" />
+                    <Checkbox id="terms" className="my-auto" />
                     <label
                         htmlFor="terms"
                         className="text-xs md:text-base font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
@@ -53,9 +59,9 @@ const Form = () => {
             <Button disabled={false} className='bg-[#006D77] w-full shadow-md text-lg font-semibold py-6' onClick={handleOTPReq}>
                 {
                     isLoading ?
-                        <div className="text-black flex-col">
-                            <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                            Please wait
+                        <div className="text-white flex justify-center align-middle">
+                            <Loader2 className="m-auto mr-2 h-4 w-4 animate-spin" />
+                            <span>Generating OTP</span>
                         </div>
                         :
                         <>Get OTP</>

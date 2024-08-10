@@ -8,9 +8,9 @@ import { FiLogIn } from "react-icons/fi";
 import { BiClinic } from "react-icons/bi";
 import { RiHealthBookLine } from "react-icons/ri";
 import { LuHelpCircle } from "react-icons/lu";
-import { CiLogout, CiLocationOn } from "react-icons/ci";
+import { CiLogout, CiHome } from "react-icons/ci";
+import { MdOutlineArticle } from "react-icons/md";
 
-import { Button } from '@/components/ui/button';
 import { Separator } from "@/components/ui/separator";
 import {
     Sheet,
@@ -20,19 +20,26 @@ import {
     SheetTitle,
     SheetTrigger,
 } from "@/components/ui/sheet"
-
 import AnimatedSubscribeButtonDemo from '@/components/button/SubscribeButton';
+
+import SearchBar from '@/components/searchbar';
 
 
 const SmallScreenNavbar = ({ isAuth }: { isAuth: boolean }) => {
+
 
     return (
         <Sheet>
             <section className='bg-[#F8F8F8]  shadow shadow-blue-100 grid grid-cols-1 mb-3 px-2 py-4'>
                 <aside className='flex justify-between items-center h-10/12'>
-                    <Link href='/'>
-                        <Image src='/assets/logos/logo.png' alt='LabD' width={60} height={60} />
-                    </Link>
+                    <div className="grid grid-cols-7">
+                        <Link href='/' className='col-span-2'>
+                            <Image src='/assets/logos/logo.png' alt='LabD' width={60} height={60} />
+                        </Link>
+                        <div className='col-span-5 mx-auto'>
+                            <SearchBar />
+                        </div>
+                    </div>
                     <SheetTrigger>
                         <IoMenuOutline className='text-3xl' />
                     </SheetTrigger>
@@ -47,6 +54,13 @@ const SmallScreenNavbar = ({ isAuth }: { isAuth: boolean }) => {
                                     <AnimatedSubscribeButtonDemo />
                                 </section>
                                 <section className='mt-10'>
+                                    <Link href="/about">
+                                        <div className='h-12 flex items-center space-x-2'>
+                                            <CiHome />
+                                            <span>Home</span>
+                                        </div>
+                                    </Link>
+                                    <Separator />
                                     {
                                         isAuth ? (
                                             <Link href="/about">
@@ -67,7 +81,7 @@ const SmallScreenNavbar = ({ isAuth }: { isAuth: boolean }) => {
                                     <Separator />
                                     <Link href="/blog">
                                         <div className='h-12 flex items-center space-x-2'>
-                                            <BiClinic />
+                                            <MdOutlineArticle />
                                             <span>Articles</span>
                                         </div>
                                     </Link>
@@ -107,29 +121,6 @@ const SmallScreenNavbar = ({ isAuth }: { isAuth: boolean }) => {
                         </SheetHeader>
                     </SheetContent>
                 </aside>
-                <>
-                    <div className='grid grid-cols-5 gap-4'>
-                        <div className='col-span-3 bg-white'>
-                            <input
-                                className=' shadow rounded px-2 max-w-full h-full'
-                                type="search"
-                                name=""
-                                id=""
-                                placeholder='Search for Test ...'
-                            />
-                        </div>
-                        <Button
-                            variant='link'
-                            className=' col-span-2'
-                        // onClick={handleRequestLocationPermission}
-                        >
-                            <CiLocationOn className='h-full w-full' />
-                            <span className='text-gray-500'>
-                                Location
-                            </span>
-                        </Button>
-                    </div>
-                </>
             </section>
         </Sheet>
     )

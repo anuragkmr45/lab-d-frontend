@@ -14,7 +14,7 @@ export default function Home() {
       <FullBodyCheckUps />
       <FeatureSection />
       <TopBookedSessions />
-      <section className="bg-gradient-to-r from-[#eaeeed] via-inherit to-[#eaeeed]">
+      <section className="bg-gradient-to-r from-[#eaeeed] via-inherit to-[#eaeeed] px-2">
         <Image src="/assets/organ-related/whatsapp-help.svg" alt="dwedfrw" height={200} width={200} className="m-auto w-full md:w-10/12 h-full" />
       </section>
     </main>

@@ -1,7 +1,8 @@
 import Image from "next/image";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import { Button } from "@/components/ui/button";
+// import { Button } from "@/components/ui/button";
+import ShinyButton from "@/components/magicui/shiny-button";
 
 const BookCard = () => {
     return (
@@ -24,7 +25,10 @@ const BookCard = () => {
                         </Badge>
                     </div>
                     <div className="flex items-center justify-center">
-                        <Button className='bg-gradient-to-tr from-[#E29578] to-[#FFDDD2] shadow-lg '> Book Now</Button>
+                        {/* <Button className='bg-gradient-to-tr from-[#E29578] from-50% to-[#FFDDD2] shadow-lg'>
+                            Book Now
+                        </Button> */}
+                        <ShinyButton text="Shiny Button" className="bg-gradient-to-tr from-[#E29578] from-40% to-[#FFDDD2] shadow-lg py-4 border-none text-white" />
                     </div>
                 </div>
             </section>
