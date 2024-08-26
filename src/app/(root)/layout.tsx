@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-// import { Inter } from "next/font/google";
 import "../globals.css";
 
 // const inter = Inter({ subsets: ["latin"] });
@@ -25,9 +24,82 @@ export default function RootLayout({
         <main className="py-24 overflow-x-hidden mb-32 md:mb-0">
           {children}
         </main>
+        {/* <BottomNavLargeScreen /> */}
         <BottomNavigation />
         <Footer />
       </body>
     </html>
   );
 }
+
+
+// const BottomNavLargeScreen = () => {
+//   const links = [
+//     {
+//       title: "Home",
+//       icon: (
+//         <IconHome className="h-full w-full text-neutral-500 dark:text-neutral-300" />
+//       ),
+//       href: "#",
+//     },
+
+//     {
+//       title: "Products",
+//       icon: (
+//         <IconTerminal2 className="h-full w-full text-neutral-500 dark:text-neutral-300" />
+//       ),
+//       href: "#",
+//     },
+//     {
+//       title: "Components",
+//       icon: (
+//         <IconNewSection className="h-full w-full text-neutral-500 dark:text-neutral-300" />
+//       ),
+//       href: "#",
+//     },
+//     {
+//       title: "Aceternity UI",
+//       icon: (
+//         <Image
+//           src="https://assets.aceternity.com/logo-dark.png"
+//           width={20}
+//           height={20}
+//           alt="Aceternity Logo"
+//         />
+//       ),
+//       href: "#",
+//     },
+//     {
+//       title: "Changelog",
+//       icon: (
+//         <IconExchange className="h-full w-full text-neutral-500 dark:text-neutral-300" />
+//       ),
+//       href: "#",
+//     },
+
+//     {
+//       title: "Twitter",
+//       icon: (
+//         <IconBrandX className="h-full w-full text-neutral-500 dark:text-neutral-300" />
+//       ),
+//       href: "#",
+//     },
+//     {
+//       title: "GitHub",
+//       icon: (
+//         <IconBrandGithub className="h-full w-full text-neutral-500 dark:text-neutral-300" />
+//       ),
+//       href: "#",
+//     },
+//   ];
+//   return (
+//     <div className="hidden md:block sticky bottom-0">
+//       <div className="flex items-center justify-center h-[35rem] w-full">
+//         <FloatingDock
+//           mobileClassName="translate-y-20" // only for demo, remove for production
+//           items={links}
+//         />
+//       </div>
+//     </div>
+//   )
+// }
