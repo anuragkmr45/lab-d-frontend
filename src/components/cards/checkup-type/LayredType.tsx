@@ -10,9 +10,10 @@ type cardProps = {
     discountedPricing: string;
     discount: string;
     parameters: string;
+    user: boolean;
 }
 
-const CheckupTypeCard = ({ title, origialPricing, discountedPricing, discount, parameters }: cardProps) => {
+const CheckupTypeCard = ({ title, origialPricing, discountedPricing, discount, parameters, user }: cardProps) => {
     return (
         <div className="w-full mx-auto h-60 bg-[#EDF6F9] rounded-xl  shadow-xl m-2 space-y-3">
             <UpperCard
@@ -23,6 +24,7 @@ const CheckupTypeCard = ({ title, origialPricing, discountedPricing, discount, p
             />
             <LowerCard
                 parameters={parameters}
+                user={user}
             />
         </div>
     );
@@ -65,10 +67,11 @@ const UpperCard = ({ title, discountedPricing, origialPricing, discount }: Upper
 
 type LowerCardProps = {
     parameters: string;
+    user: boolean;
     link?: string;
 }
 
-const LowerCard = ({ parameters, link = '/' }: LowerCardProps) => {
+const LowerCard = ({ parameters, user, link = '/' }: LowerCardProps) => {
     return (
         <div className="space-y-4">
             <div className="grid grid-cols-2 gap-3 px-4">
@@ -100,9 +103,19 @@ const LowerCard = ({ parameters, link = '/' }: LowerCardProps) => {
                 <Link href='/organ-related/full%20body%20checkups'>
                     <Button className=' bg-transparent font-semibold  text-[#006D77] hover:bg-[#006D77] hover:text-white shadow-sm shadow-[#006D77] transition-all duration-200 ease-in-out'> View Details</Button>
                 </Link>
-                <Link href='/book-test-deatils'>
-                    <Button className='bg-gradient-to-tr from-[#ff8153] to-[#f9d2c5] shadow-lg hover:scale-105 transition-all duration-200 ease-in-out'> Book Details</Button>
-                </Link>
+
+                {
+                    user ? (
+                        <Link href='/book-test-deatils'>
+                            <Button className='bg-gradient-to-tr from-[#ff8153] to-[#f9d2c5] shadow-lg hover:scale-105 transition-all duration-200 ease-in-out'> Book Details</Button>
+                        </Link>
+                    ) : (
+                        <Link href='/signin'>
+                            <Button className='bg-gradient-to-tr from-[#ff8153] to-[#f9d2c5] shadow-lg hover:scale-105 transition-all duration-200 ease-in-out'>Login To Continue</Button>
+                        </Link>
+                    )
+                }
+
             </div>
         </div>
     )

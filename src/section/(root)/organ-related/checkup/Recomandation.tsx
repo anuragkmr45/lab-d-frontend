@@ -11,6 +11,7 @@ const RecommandedTests = () => {
                     discountedPricing='1499'
                     discount='75'
                     parameters='91'
+                    user={false}
                 />
                 <CheckupTypeCard
                     title='Full Body Checkup - Essential'
@@ -18,6 +19,7 @@ const RecommandedTests = () => {
                     discountedPricing='1499'
                     discount='75'
                     parameters='91'
+                    user={false}
                 />
                 <CheckupTypeCard
                     title='Full Body Checkup - Essential'
@@ -25,6 +27,7 @@ const RecommandedTests = () => {
                     discountedPricing='1499'
                     discount='75'
                     parameters='91'
+                    user={false}
                 />
                 <CheckupTypeCard
                     title='Full Body Checkup - Essential'
@@ -32,6 +35,7 @@ const RecommandedTests = () => {
                     discountedPricing='1499'
                     discount='75'
                     parameters='91'
+                    user={false}
                 />
                 <CheckupTypeCard
                     title='Full Body Checkup - Essential'
@@ -39,6 +43,7 @@ const RecommandedTests = () => {
                     discountedPricing='1499'
                     discount='75'
                     parameters='91'
+                    user={false}
                 />
                 <CheckupTypeCard
                     title='Full Body Checkup - Essential'
@@ -46,6 +51,7 @@ const RecommandedTests = () => {
                     discountedPricing='1499'
                     discount='75'
                     parameters='91'
+                    user={false}
                 />
                 <CheckupTypeCard
                     title='Full Body Checkup - Essential'
@@ -53,6 +59,7 @@ const RecommandedTests = () => {
                     discountedPricing='1499'
                     discount='75'
                     parameters='91'
+                    user={false}
                 />
             </div>
         </div>

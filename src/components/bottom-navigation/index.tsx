@@ -3,12 +3,15 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation'
+import { useSelector } from 'react-redux';
+import { RootState } from '@/lib/redux/store';
+
 import { FloatingDock } from "@/components/ui/floating-dock";
-import { House, PillBottle, HeartPulse, UserRoundPen, CircleHelp, PersonStanding, Stethoscope } from 'lucide-react';
+import { House, PillBottle, HeartPulse, UserRoundPen, CircleHelp, PersonStanding, Stethoscope, LogIn } from 'lucide-react';
 
 const BottomNavigation = () => {
 
-    const pathname: string = usePathname()
+    const pathname: string = usePathname();
 
     type bottomNavType = {
         key: number,
@@ -70,6 +73,8 @@ const BottomNavigation = () => {
 
 const BottomNavigationLargeScreen = () => {
 
+    const isAuth = useSelector((state: RootState) => state.authStatus.isAuth);
+
     const links = [
         {
             title: "Home",
@@ -113,14 +118,19 @@ const BottomNavigationLargeScreen = () => {
             ),
             href: "/contact",
         },
-
-        {
+        isAuth ? ({
             title: "Profile",
             icon: (
                 <UserRoundPen className="h-full w-full text-neutral-900" />
             ),
-            href: "/",
-        },
+            href: "/profile",
+        }) : ({
+            title: "Sign Up",
+            icon: (
+                <LogIn className="h-full w-full text-neutral-900" />
+            ),
+            href: "/signup",
+        }),
     ];
 
     return (

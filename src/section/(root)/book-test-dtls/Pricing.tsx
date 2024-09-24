@@ -1,10 +1,13 @@
-import Image from "next/image";
+"use client";
+
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-// import { Button } from "@/components/ui/button";
 import ShinyButton from "@/components/magicui/shiny-button";
 
 const BookCard = () => {
+
+    const isAuth = false;
+
     return (
         <main className="space-y-8">
             <section className="rounded-xl shadow-md">
@@ -28,7 +31,13 @@ const BookCard = () => {
                         {/* <Button className='bg-gradient-to-tr from-[#E29578] from-50% to-[#FFDDD2] shadow-lg'>
                             Book Now
                         </Button> */}
-                        <ShinyButton text="Shiny Button" className="bg-gradient-to-tr from-[#E29578] from-40% to-[#FFDDD2] shadow-lg py-4 border-none text-white" />
+                        {
+                            isAuth ? (
+                                <ShinyButton text="Book Now" className="bg-gradient-to-tr from-[#E29578] from-40% to-[#FFDDD2] shadow-lg py-4 " />
+                            ) : (
+                                <ShinyButton text="Login to Continue" className="bg-gradient-to-tr from-[#E29578] from-40% to-[#FFDDD2] shadow-lg py-2" />
+                            )
+                        }
                     </div>
                 </div>
             </section>

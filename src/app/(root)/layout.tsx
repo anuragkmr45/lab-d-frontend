@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 import "../globals.css";
 
-// const inter = Inter({ subsets: ["latin"] });
-
 import Navbar from "@/components/navbar/index";
 import Footer from "@/components/footer/index";
 import BottomNavigation from "@/components/bottom-navigation/index";
@@ -21,10 +19,9 @@ export default function RootLayout({
     <html lang="en">
       <body className="text-black bg-white">
         <Navbar />
-        <main className="py-24 overflow-x-hidden mb-32 md:mb-0">
+        <main className="py-20 overflow-x-hidden mb-32 md:mb-0">
           {children}
         </main>
-        {/* <BottomNavLargeScreen /> */}
         <BottomNavigation />
         <Footer />
       </body>

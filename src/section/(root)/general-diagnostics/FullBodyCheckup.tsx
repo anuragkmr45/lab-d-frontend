@@ -1,15 +1,20 @@
 "use client"
 
+import { useSelector, UseSelector } from "react-redux";
+import { RootState } from '@/lib/redux/store';
+
 import Autoplay from "embla-carousel-autoplay";
 import {
     Carousel,
     CarouselContent,
     CarouselItem,
-} from "@/components/ui/carousel"
+} from "@/components/ui/carousel";
 
 import CheckupTypeCard from '@/components/cards/checkup-type/LayredType';
 
 const FullBodyCheckUp = () => {
+
+    const isAuth = useSelector((state: RootState) => state.authStatus.isAuth);
 
     type carouselContnentType = {
         key: number;
@@ -110,6 +115,7 @@ const FullBodyCheckUp = () => {
                                             discountedPricing={data.discountedPricing}
                                             discount={data.discount}
                                             parameters={data.parameters}
+                                            user={isAuth}
                                         />
                                     </CarouselItem>
                                 )

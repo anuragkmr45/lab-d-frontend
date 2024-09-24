@@ -3,15 +3,13 @@ import LargeScreenNavbar from './LargeScreen';
 
 const Navbar = () => {
 
-    const isAuth = true;
-
     return (
         <header className='fixed top-0 w-screen z-40'>
             <nav className='block lg:hidden'>
-                <SmallScreenNavbar isAuth={isAuth} />
+                <SmallScreenNavbar />
             </nav>
             <nav className='hidden lg:block'>
-                <LargeScreenNavbar isAuth={isAuth} />
+                <LargeScreenNavbar />
             </nav>
         </header >
     )

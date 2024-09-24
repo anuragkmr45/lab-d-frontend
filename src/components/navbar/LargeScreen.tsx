@@ -3,6 +3,9 @@
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '@/lib/redux/store';
+import { unauthorise } from '@/lib/redux/slices/authSlice';
 
 import {
     DropdownMenu,
@@ -19,11 +22,12 @@ import { RxAvatar } from "react-icons/rx";
 import { Button } from "@/components/ui/button";
 import SearchBar from "@/components/searchbar";
 
-const LargeScreenNavbar = ({ isAuth }: { isAuth: boolean }) => {
+const LargeScreenNavbar = () => {
 
     const [isSticky, setSticky] = useState(false);
     const location = false;
-    const authenticated: boolean = true;
+    const isAuth = useSelector((state: RootState) => state.authStatus.isAuth);
+    const dispatch = useDispatch();
 
     const handleScroll = () => {
         const scrollPosition = window.scrollY;
@@ -38,8 +42,8 @@ const LargeScreenNavbar = ({ isAuth }: { isAuth: boolean }) => {
     }, []);
 
     const navbarStickyEffect = isSticky ?
-        'bg-[#F8F8F8] transition-all duration-500 ease-in-out shadow-lg shadow-[#DEEFF4]' :
-        'bg-inherit transition-all duration-500 ease-in-out';
+        'bg-[#F8F8F8] transition-all duration-300 ease-in-out shadow-lg shadow-[#DEEFF4]' :
+        'bg-inherit transition-all duration-300 ease-in-out';
 
     return (
         <div className={`w-screen shadow ${navbarStickyEffect}`}>
@@ -49,7 +53,7 @@ const LargeScreenNavbar = ({ isAuth }: { isAuth: boolean }) => {
                         <Image src='/assets/logos/logo.png' alt='LabD' width={60} height={60} />
                     </Link>
                     {
-                        authenticated && (
+                        isAuth && (
                             <>
                                 <div className='flex items-center py-2 px-3 cursor-pointer rounded-md hover:shadow-lg ease-in-out duration-200 transition-all'>
                                     <IoLocationOutline />
@@ -73,7 +77,7 @@ const LargeScreenNavbar = ({ isAuth }: { isAuth: boolean }) => {
                         <span>Support</span>
                     </Button>
                     {
-                        isAuth && isAuth ? (
+                        isAuth ? (
                             <DropdownMenu>
                                 <DropdownMenuTrigger>
                                     <Avatar>
@@ -87,7 +91,7 @@ const LargeScreenNavbar = ({ isAuth }: { isAuth: boolean }) => {
                                     <DropdownMenuItem>My Booking</DropdownMenuItem>
                                     <DropdownMenuItem>Need Help</DropdownMenuItem>
                                     <DropdownMenuSeparator />
-                                    <DropdownMenuItem>
+                                    <DropdownMenuItem onClick={() => { dispatch(unauthorise()) }}>
                                         <span className='font-medium text-red-500'>Logout</span>
                                     </DropdownMenuItem>
                                 </DropdownMenuContent>

@@ -2,11 +2,16 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
+import { useSelector } from 'react-redux';
+import { RootState } from '@/lib/redux/store';
+
 import { Button } from '@/components/ui/button';
 import CheckupTypeCard from '@/components/cards/checkup-type/LayredType';
 
 const TopBookedSessions = () => {
     const [showAll, setShowAll] = useState(false);
+
+    const isAuth = useSelector((state: RootState) => state.authStatus.isAuth);
 
     type BookedTestType = {
         key: number,
@@ -114,7 +119,9 @@ const TopBookedSessions = () => {
                                     origialPricing={data.origialPricing}
                                     discountedPricing={data.discountedPricing}
                                     discount={data.discount}
-                                    parameters={data.parameters} />
+                                    parameters={data.parameters}
+                                    user={isAuth}
+                                />
                             )
                         })
                     }

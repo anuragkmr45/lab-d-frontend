@@ -25,8 +25,9 @@ import AnimatedSubscribeButtonDemo from '@/components/button/SubscribeButton';
 import SearchBar from '@/components/searchbar';
 
 
-const SmallScreenNavbar = ({ isAuth }: { isAuth: boolean }) => {
+const SmallScreenNavbar = () => {
 
+    const isAuth = false;
 
     return (
         <Sheet>
@@ -54,30 +55,19 @@ const SmallScreenNavbar = ({ isAuth }: { isAuth: boolean }) => {
                                     <AnimatedSubscribeButtonDemo />
                                 </section>
                                 <section className='mt-10'>
-                                    <Link href="/about">
+                                    <Link href="/">
                                         <div className='h-12 flex items-center space-x-2'>
                                             <CiHome />
                                             <span>Home</span>
                                         </div>
                                     </Link>
                                     <Separator />
-                                    {
-                                        isAuth ? (
-                                            <Link href="/about">
-                                                <div className='h-12 flex items-center space-x-2'>
-                                                    <FiLogIn />
-                                                    <span>About Us</span>
-                                                </div>
-                                            </Link>
-                                        ) : (
-                                            <Link href="/signin">
-                                                <div className='h-12 flex items-center space-x-2'>
-                                                    <FiLogIn />
-                                                    <span>Log In or Register</span>
-                                                </div>
-                                            </Link>
-                                        )
-                                    }
+                                    <Link href="/about">
+                                        <div className='h-12 flex items-center space-x-2'>
+                                            <FiLogIn />
+                                            <span>About Us</span>
+                                        </div>
+                                    </Link>
                                     <Separator />
                                     <Link href="/blog">
                                         <div className='h-12 flex items-center space-x-2'>
@@ -86,20 +76,26 @@ const SmallScreenNavbar = ({ isAuth }: { isAuth: boolean }) => {
                                         </div>
                                     </Link>
                                     <Separator />
-                                    <Link href="/my-bookings">
-                                        <div className='h-12 flex items-center space-x-2'>
-                                            <BiClinic />
-                                            <span>My Bookings</span>
-                                        </div>
-                                    </Link>
-                                    <Separator />
-                                    <Link href="/health-record">
-                                        <div className='h-12 flex items-center space-x-2'>
-                                            <RiHealthBookLine />
-                                            <span>Health Records</span>
-                                        </div>
-                                    </Link>
-                                    <Separator />
+                                    {
+                                        isAuth && (
+                                            <>
+                                                <Link href="/my-bookings">
+                                                    <div className='h-12 flex items-center space-x-2'>
+                                                        <BiClinic />
+                                                        <span>My Bookings</span>
+                                                    </div>
+                                                </Link>
+                                                <Separator />
+                                                <Link href="/health-record">
+                                                    <div className='h-12 flex items-center space-x-2'>
+                                                        <RiHealthBookLine />
+                                                        <span>Health Records</span>
+                                                    </div>
+                                                </Link>
+                                                <Separator />
+                                            </>
+                                        )
+                                    }
                                     <Link href="/contact">
                                         <div className='h-12 flex items-center space-x-2'>
                                             <LuHelpCircle />
@@ -108,11 +104,26 @@ const SmallScreenNavbar = ({ isAuth }: { isAuth: boolean }) => {
                                     </Link>
                                     <Separator />
                                     {
-                                        isAuth && (
+                                        isAuth ? (
                                             <div className='h-12 flex items-center space-x-2'>
                                                 <CiLogout />
                                                 <span>Logout</span>
                                             </div>
+                                        ) : (
+                                            <>
+                                                <Link href="/signup">
+                                                    <div className='h-12 flex items-center space-x-2'>
+                                                        <FiLogIn />
+                                                        <span>Register</span>
+                                                    </div>
+                                                </Link>
+                                                <Link href="/signup">
+                                                    <div className='h-12 flex items-center space-x-2'>
+                                                        <FiLogIn />
+                                                        <span>Log In</span>
+                                                    </div>
+                                                </Link>
+                                            </>
                                         )
                                     }
                                     <Separator />

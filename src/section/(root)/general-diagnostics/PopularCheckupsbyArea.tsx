@@ -74,7 +74,9 @@ const PopularCheckupsByArea = () => {
                                 origialPricing={data.origialPricing}
                                 discountedPricing={data.discountedPricing}
                                 discount={data.discount}
-                                parameters={data.parameters} />
+                                parameters={data.parameters}
+                                user={false}
+                            />
                         )
                     })
                 }
