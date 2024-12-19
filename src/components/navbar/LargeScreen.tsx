@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 import {
     DropdownMenu,
@@ -10,25 +11,43 @@ import {
     DropdownMenuItem,
     DropdownMenuSeparator,
     DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+} from "@/components/ui/dropdown-menu";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Button } from "@/components/ui/button";
+import SearchBar from "@/components/searchbar";
 
 import { IoLocationOutline } from "react-icons/io5";
 import { SiWhatsapp } from "react-icons/si";
 import { RxAvatar } from "react-icons/rx";
-import { Button } from "@/components/ui/button";
-import SearchBar from "@/components/searchbar";
 
 const LargeScreenNavbar = ({ isAuth }: { isAuth: boolean }) => {
 
     const [isSticky, setSticky] = useState(false);
     const location = false;
-    const authenticated: boolean = true;
+    const router = useRouter();
 
     const handleScroll = () => {
         const scrollPosition = window.scrollY;
         setSticky(scrollPosition > 50);
     };
+
+    const handleSignout = async () => {
+        try {
+            const res = await fetch('/api/auth/signout', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({}),
+            });
+
+            if (res.ok) {
+                router.replace('/');
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    }
 
     useEffect(() => {
         window.addEventListener('scroll', handleScroll);
@@ -49,9 +68,9 @@ const LargeScreenNavbar = ({ isAuth }: { isAuth: boolean }) => {
                         <Image src='/assets/logos/logo.png' alt='LabD' width={60} height={60} />
                     </Link>
                     {
-                        authenticated && (
+                        isAuth && (
                             <>
-                                <div className='flex items-center py-2 px-3 cursor-pointer rounded-md hover:shadow-lg ease-in-out duration-200 transition-all'>
+                                <div className='flex items-center py-2 px-3 cursor-pointer rounded-md shadow hover:shadow-md ease-in-out duration-200 transition-all'>
                                     <IoLocationOutline />
                                     <span>Select Location</span>
 
@@ -73,7 +92,7 @@ const LargeScreenNavbar = ({ isAuth }: { isAuth: boolean }) => {
                         <span>Support</span>
                     </Button>
                     {
-                        isAuth && isAuth ? (
+                        isAuth ? (
                             <DropdownMenu>
                                 <DropdownMenuTrigger>
                                     <Avatar>
@@ -88,14 +107,14 @@ const LargeScreenNavbar = ({ isAuth }: { isAuth: boolean }) => {
                                     <DropdownMenuItem>Need Help</DropdownMenuItem>
                                     <DropdownMenuSeparator />
                                     <DropdownMenuItem>
-                                        <span className='font-medium text-red-500'>Logout</span>
+                                        <button onClick={handleSignout} className='font-medium text-red-500'>Logout</button>
                                     </DropdownMenuItem>
                                 </DropdownMenuContent>
                             </DropdownMenu>
 
                         ) : (
                             <Link href="/signin">
-                                <Button variant="ghost" className='space-x-2 shadow'>
+                                <Button variant="outline" className='space-x-2 bg-blue-200 shadow'>
                                     <RxAvatar />
                                     <span>Login</span>
                                 </Button>

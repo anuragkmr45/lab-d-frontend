@@ -3,7 +3,6 @@ import { CircleX } from 'lucide-react';
 import Link from "next/link";
 
 import Form from "./Form";
-// import OtpScreen from "./OtpScreen";
 
 const SmallScreen = () => {
 
@@ -16,7 +15,6 @@ const SmallScreen = () => {
                 <Separator className="my-4 text-[#868686] h-[0.15rem]" />
             </div>
             <Form />
-            {/* <OtpScreen /> */}
         </section>
     )
 }

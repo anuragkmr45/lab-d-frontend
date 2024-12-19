@@ -1,9 +1,13 @@
 import SmallScreenNavbar from './SmallScreen';
 import LargeScreenNavbar from './LargeScreen';
 
+import { cookies } from "next/headers";
+
+
 const Navbar = () => {
 
-    const isAuth = true;
+    const cookieStore = cookies();
+    const isAuth = cookieStore.get("auth_token")?.value ? true : false;
 
     return (
         <header className='fixed top-0 w-screen z-40'>
