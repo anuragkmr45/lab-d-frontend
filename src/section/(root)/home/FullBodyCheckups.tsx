@@ -1,5 +1,10 @@
 "use client"
 
+import { useEffect, useState } from "react";
+import Image from "next/image";
+import Link from "next/link";
+import { getAllServices } from "@/services/service";
+
 import {
     Carousel,
     CarouselContent,
@@ -8,86 +13,35 @@ import {
 import Autoplay from "embla-carousel-autoplay";
 import CheckupTypeCard from "@/components/cards/checkup-type/LayredType";
 
-import Image from "next/image";
-import Link from "next/link";
 
 const FullBodyCheckUps = () => {
 
-    type CarouselContent = {
+    type cardDataType = {
         key: number;
         title: string;
-        origialPricing: string;
-        discountedPricing: string;
-        discount: string;
+        desc: string;
         parameters: string;
+        sampleType: string;
+        tubeType: string;
+        packageIncludes: string;
+        discountedPrice: string;
+        discountPercentage: string;
     }
 
-    const carouselContnent: CarouselContent[] = [
-        {
-            key: 0,
-            title: 'Full Body Checkup - Essential',
-            origialPricing: '6063',
-            discountedPricing: '1499',
-            discount: '75',
-            parameters: '91'
-        },
-        {
-            key: 1,
-            title: 'Full Body Checkup - Essential',
-            origialPricing: '6063',
-            discountedPricing: '1499',
-            discount: '75',
-            parameters: '91'
-        },
-        {
-            key: 2,
-            title: 'Full Body Checkup - Essential',
-            origialPricing: '6063',
-            discountedPricing: '1499',
-            discount: '75',
-            parameters: '91'
-        },
-        {
-            key: 3,
-            title: 'Full Body Checkup - Essential',
-            origialPricing: '6063',
-            discountedPricing: '1499',
-            discount: '75',
-            parameters: '91'
-        },
-        {
-            key: 4,
-            title: 'Full Body Checkup - Essential',
-            origialPricing: '6063',
-            discountedPricing: '1499',
-            discount: '75',
-            parameters: '91'
-        },
-        {
-            key: 5,
-            title: 'Full Body Checkup - Essential',
-            origialPricing: '6063',
-            discountedPricing: '1499',
-            discount: '75',
-            parameters: '91'
-        },
-        {
-            key: 6,
-            title: 'Full Body Checkup - Essential',
-            origialPricing: '6063',
-            discountedPricing: '1499',
-            discount: '75',
-            parameters: '91'
-        },
-        {
-            key: 7,
-            title: 'Full Body Checkup - Essential',
-            origialPricing: '6063',
-            discountedPricing: '1499',
-            discount: '75',
-            parameters: '91'
-        },
-    ];
+    const [services, setServices] = useState<cardDataType[]>([]);
+
+    useEffect(() => { 
+        const handleGetAllServices = async () => {
+            try {
+                const res = await getAllServices();
+                setServices(res);
+            } catch (error) {
+                console.error('Error while fetching all services:', error);
+            }
+        };
+
+        handleGetAllServices();
+    }, [])
 
     return (
         <>
@@ -103,16 +57,10 @@ const FullBodyCheckUps = () => {
                 >
                     <CarouselContent>
                         {
-                            carouselContnent.map((data) => {
+                            services.length !== 0 && services.map((data) => {
                                 return (
                                     <CarouselItem key={data.key} className="md:basis-1/2 lg:basis-1/3">
-                                        <CheckupTypeCard
-                                            title={data.title}
-                                            origialPricing={data.origialPricing}
-                                            discountedPricing={data.discountedPricing}
-                                            discount={data.discount}
-                                            parameters={data.parameters}
-                                        />
+                                        <CheckupTypeCard cardData={data} />
                                     </CarouselItem>
                                 )
                             })

@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { redirect } from "next/navigation";
+import Link from "next/link";
 
 import { Input } from "@/components/ui/input";
 // import { Checkbox } from "@/components/ui/checkbox";
@@ -49,8 +50,6 @@ const Form = () => {
             if (data.status == 200) {
                 redirect("/");
             }
-
-            localStorage.setItem("auth_token", data.token);
         } catch (error) {
             console.error(error);
         } finally {
@@ -77,7 +76,7 @@ const Form = () => {
 
     return (
         <div className="flex flex-col justify-around space-y-16">
-            <div className="space-y-5">
+            <div className="space-y-4">
                 <h1 className="font-bold text-2xl" >Sign Up</h1>
                 <div className="space-y-4">
                     <Input
@@ -153,6 +152,7 @@ const Form = () => {
                     </label>
                 </div> */}
             </div>
+            <label className="text-black text-xs">Already having an account <Link className="text-[#006D77]" href='/signin'>SignIn</Link>.</label>
             <Button disabled={false} className='bg-[#006D77] w-full shadow-md text-lg font-semibold py-6' onClick={handleSingup}>
                 {
                     isLoading ?

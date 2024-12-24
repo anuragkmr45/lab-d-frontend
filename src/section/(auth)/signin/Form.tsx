@@ -1,14 +1,16 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { redirect } from "next/navigation";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+
+import {signin} from "@/services/auth";
 
 import { Input } from "@/components/ui/input";
 // import { Checkbox } from "@/components/ui/checkbox";
 import { Button } from "@/components/ui/button";
 
 import { Loader2, EyeOff, Eye } from "lucide-react"
-import Link from "next/link";
 
 const Form = () => {
 
@@ -18,33 +20,17 @@ const Form = () => {
     });
     const [passToggle, setPassToggle] = useState<boolean>(false);
     const [isLoading, setIsLoading] = useState(false);
-
+const router = useRouter();
 
     const handleTogglePass = () => {
         setPassToggle(!passToggle);
     }
 
     const handleSignin = async () => {
+        setIsLoading(true);
         try {
-            const response = await fetch("/api/auth/signin", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(formData),
-            });
-
-            if (!response.ok) {
-                const error = await response.json();
-                console.error(error);
-                return;
-            }
-
-            const data = await response.json();
-            
-            if (data.status == 200) {
-                redirect("/");
-            }
+            await signin(formData.email, formData.password);
+            router.push('/');
 
         } catch (error) {
             console.error(error);
@@ -60,7 +46,7 @@ const Form = () => {
               const data = await response.json();
       
               if (data.isAuth) {
-                redirect("/");
+                router.replace("/");
               } 
             } catch (error) {
               console.error("Error checking authentication:", error);
@@ -100,7 +86,7 @@ const Form = () => {
                         }
                     </Button>
                 </div>
-                <label className="text-black text-xs mt-6">Already having an account <Link className="text-[#006D77]" href='/signup'>Signup</Link>.</label>
+                <label className="text-black text-xs mt-6">Don't having an account <Link className="text-[#006D77]" href='/signup'>Signup</Link>.</label>
                 {/* <div className="flex space-x-2">
                     <Checkbox id="terms" className="my-auto" />
                     <label

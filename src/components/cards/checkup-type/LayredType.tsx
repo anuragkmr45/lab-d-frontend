@@ -4,25 +4,32 @@ import { FaDna } from "react-icons/fa";
 import { TbReport } from "react-icons/tb";
 import { PiCurrencyDollarBold } from "react-icons/pi";
 
-type cardProps = {
+type cardDataType = {
+    key: number;
     title: string;
-    origialPricing: string;
-    discountedPricing: string;
-    discount: string;
+    desc: string;
     parameters: string;
+    sampleType: string;
+    tubeType: string;
+    packageIncludes: string;
+    discountedPrice: string;
+    discountPercentage: string;
 }
 
-const CheckupTypeCard = ({ title, origialPricing, discountedPricing, discount, parameters }: cardProps) => {
+const CheckupTypeCard = (cardData: cardDataType) => {
+
+        const origialPricing: string =  (parseInt(cardData.discountedPrice) / (1 - parseInt(cardData.discountPercentage) / 100)).toString();
+
     return (
         <div className="w-full mx-auto h-60 bg-[#EDF6F9] rounded-xl  shadow-xl m-2 space-y-3">
             <UpperCard
-                discount={discount}
+                discount={cardData.discountedPrice}
                 origialPricing={origialPricing}
-                discountedPricing={discountedPricing}
-                title={title}
+                discountedPricing={cardData.discountedPrice}
+                title={cardData.title}
             />
             <LowerCard
-                parameters={parameters}
+                parameters={cardData.parameters}
             />
         </div>
     );

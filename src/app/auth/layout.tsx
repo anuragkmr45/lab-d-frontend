@@ -8,11 +8,12 @@ export const metadata = {
     description: "Lab-D is a platform for booking lab tests online.",
 };
 
-export default function AuthLayout({
+export default async function AuthLayout({
     children,
 }: Readonly<{
     children: React.ReactNode;
 }>) {
+
     return (
         <html lang="en">
             <body className={`${inter.className} text-black bg-white`}>
