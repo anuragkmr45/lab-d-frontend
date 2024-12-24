@@ -1,6 +1,6 @@
 import Image from 'next/image';
 
-const HeroSection = ({ organ }: { organ: string }) => {
+const HeroSection = ({ serviceName, serviceDesc }: { serviceName: string, serviceDesc: string }) => {
 
     type cardDataType = {
         key: number,
@@ -17,13 +17,13 @@ const HeroSection = ({ organ }: { organ: string }) => {
             subtitle: '6 hours'
         },
         {
-            key: 0,
+            key: 1,
             img: "/assets/general-diagnostics/certified.svg",
             title: "Certified Labs",
             subtitle: '6 hours'
         },
         {
-            key: 0,
+            key: 2,
             img: "/assets/general-diagnostics/certified.svg",
             title: "Certified Labs",
             subtitle: '6 hours'
@@ -36,7 +36,7 @@ const HeroSection = ({ organ }: { organ: string }) => {
                 <div className="grid grid-cols-1 md:grid-cols-5 gap-2">
                     <div className='col-span-3 m-auto'>
                         <h1 className='text-4xl md:text-6xl font-semibold my-3'>
-                            {organ}
+                            {serviceName}
                         </h1>
                         <svg width="100" height="100" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" className='absolute top-32 right-[15%] md:right-[45%] opacity-55 z-0'>
                             <g filter="url(#filter0_f_140_2981)">
@@ -55,7 +55,7 @@ const HeroSection = ({ organ }: { organ: string }) => {
                             </defs>
                         </svg>
                         <p className='z-10 relative'>
-                            Home diagnosis f-administered tests for certain ailments.
+                            {serviceDesc}
                         </p>
                         <svg width="150" height="150" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" className='absolute top-56 opacity-30 md:opacity-60 z-0'>
                             <g filter="url(#filter0_f_140_2981)">

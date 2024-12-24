@@ -4,7 +4,13 @@ import { Separator } from "@/components/ui/separator";
 // import { Button } from "@/components/ui/button";
 import ShinyButton from "@/components/magicui/shiny-button";
 
-const BookCard = () => {
+const BookCard = ({discountedPrice, discountPercentage}: {discountedPrice: string, discountPercentage: string}) => {
+
+    const originalPricing: number = Math.round(
+        parseFloat(discountedPrice || "0") /
+          (1 - parseFloat(discountPercentage || "0") / 100)
+      );
+
     return (
         <main className="space-y-8">
             <section className="rounded-xl shadow-md">
@@ -17,8 +23,8 @@ const BookCard = () => {
                 <div className="grid grid-cols-2 gap-4 bg-white py-4 rounded-b-xl">
                     <div className="flex flex-col mx-auto space-y-2">
                         <div className="flex items-end space-x-2">
-                            <h2 className="flex items-center text-2xl font-medium">₹ 1499</h2>
-                            <p className="line-through text-gray-500 font-medium">₹ 123</p>
+                            <h2 className="flex items-center text-2xl font-medium">₹ {discountedPrice}</h2>
+                            <p className="line-through text-gray-500 font-medium">₹ {originalPricing}</p>
                         </div>
                         <Badge className="rounded-md bg-[#006D77] w-fit py-2 text-center">
                             75% off

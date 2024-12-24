@@ -2,12 +2,15 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
+import { redirect } from 'next/navigation';
+
+import { signout } from '@/services/auth';
 
 import { IoMenuOutline } from "react-icons/io5";
 import { FiLogIn } from "react-icons/fi";
 import { BiClinic } from "react-icons/bi";
 import { RiHealthBookLine } from "react-icons/ri";
-import { LuHelpCircle } from "react-icons/lu";
+// import { LuHelpCircle } from "react-icons/lu";
 import { CiLogout, CiHome } from "react-icons/ci";
 import { MdOutlineArticle } from "react-icons/md";
 
@@ -23,10 +26,19 @@ import {
 import AnimatedSubscribeButtonDemo from '@/components/button/SubscribeButton';
 
 import SearchBar from '@/components/searchbar';
+import { Button } from '../ui/button';
 
 
 const SmallScreenNavbar = ({ isAuth }: { isAuth: boolean }) => {
 
+    const handleLogout = async () => {
+        try {
+            await signout();
+            redirect('/auth/signin');
+        } catch (error) {
+            console.log(error);
+        }
+    }
 
     return (
         <Sheet>
@@ -102,17 +114,17 @@ const SmallScreenNavbar = ({ isAuth }: { isAuth: boolean }) => {
                                     <Separator />
                                     <Link href="/contact">
                                         <div className='h-12 flex items-center space-x-2'>
-                                            <LuHelpCircle />
+                                            {/* <LuHelpCircle /> */}
                                             <span>Need Help?</span>
                                         </div>
                                     </Link>
                                     <Separator />
                                     {
                                         isAuth && (
-                                            <div className='h-12 flex items-center space-x-2'>
+                                            <Button onClick={handleLogout} className='h-12 flex items-center space-x-2'>
                                                 <CiLogout />
                                                 <span>Logout</span>
-                                            </div>
+                                            </Button>
                                         )
                                     }
                                     <Separator />
@@ -126,4 +138,4 @@ const SmallScreenNavbar = ({ isAuth }: { isAuth: boolean }) => {
     )
 }
 
-export default SmallScreenNavbar
+export default SmallScreenNavbar;

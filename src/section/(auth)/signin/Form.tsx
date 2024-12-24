@@ -2,9 +2,9 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useRouter } from "next/router";
 
-import {signin} from "@/services/auth";
+import { signin } from "@/services/auth";
 
 import { Input } from "@/components/ui/input";
 // import { Checkbox } from "@/components/ui/checkbox";
@@ -20,7 +20,7 @@ const Form = () => {
     });
     const [passToggle, setPassToggle] = useState<boolean>(false);
     const [isLoading, setIsLoading] = useState(false);
-const router = useRouter();
+    const router = useRouter();
 
     const handleTogglePass = () => {
         setPassToggle(!passToggle);
@@ -31,7 +31,6 @@ const router = useRouter();
         try {
             await signin(formData.email, formData.password);
             router.push('/');
-
         } catch (error) {
             console.error(error);
         } finally {
@@ -39,22 +38,21 @@ const router = useRouter();
         }
     }
 
-    useEffect(() => {
-        const checkAuth = async () => {
-            try {
-              const response = await fetch("/api/auth/isAuth");
-              const data = await response.json();
-      
-              if (data.isAuth) {
-                router.replace("/");
-              } 
-            } catch (error) {
-              console.error("Error checking authentication:", error);
-            }
-          };
-      
-          checkAuth();
-    }, []);
+    // useEffect(() => {
+    //     const checkAuth = async () => {
+    //         try {
+    //             const token = getClientToken();
+    //             if (token !== null) {
+    //                 redirect("/");
+    //             }
+    //             console.log('token: ', token)
+    //         } catch (error) {
+    //             console.error("Error checking authentication:", error);
+    //         }
+    //     };
+
+    //     checkAuth();
+    // }, []);
 
     return (
         <div className="flex flex-col justify-around space-y-16">
@@ -86,7 +84,7 @@ const router = useRouter();
                         }
                     </Button>
                 </div>
-                <label className="text-black text-xs mt-6">Don't having an account <Link className="text-[#006D77]" href='/signup'>Signup</Link>.</label>
+                <label className="text-black text-xs mt-6">Don't having an account <Link className="text-[#006D77]" href='/auth/signup'>Signup</Link>.</label>
                 {/* <div className="flex space-x-2">
                     <Checkbox id="terms" className="my-auto" />
                     <label

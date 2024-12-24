@@ -11,7 +11,7 @@ import {
 import PricingSection from './Pricing';
 import QuickLinks from './QuickLinks';
 
-const ContentDetails = () => {
+const ContentDetails = ({sampleType,tubeType, packageIncludes, testParameters}: {sampleType: string,tubeType: string, packageIncludes: string, testParameters: string[]}) => {
     return (
         <div className='border-2 border-[#DFE3E6] rounded-lg p-2'>
             <div className='block lg:hidden'>
@@ -42,7 +42,7 @@ const ContentDetails = () => {
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucideBeaker text-[#40464D]"><path d="M4.5 3h15" /><path d="M6 3v16a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V3" /><path d="M6 14h12" /></svg>
                         <h2 className="font-semibold text-[#40464D] text-sm md:text-base">Sample Type : </h2>
                     </div>
-                    <Badge className='bg-[#EEF4FF] px-2 py-1 my-2 rounded-md text-[#4F585E]'>Blood</Badge>
+                    <Badge className='bg-[#EEF4FF] px-2 py-1 my-2 rounded-md text-[#4F585E]'>{sampleType}</Badge>
                 </div>
                 <div className="flex justify-start items-center">
                     <div className="flex justify-start items-center">
@@ -57,14 +57,14 @@ const ContentDetails = () => {
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-test-tube-diagonal text-[#40464D]"><path d="M21 7 6.82 21.18a2.83 2.83 0 0 1-3.99-.01a2.83 2.83 0 0 1 0-4L17 3" /><path d="m16 2 6 6" /><path d="M12 16H4" /></svg>
                     <h2 className="font-semibold text-[#40464D] text-sm md:text-base">Tube Type : </h2>
                 </div>
-                <Badge className='bg-[#EEF4FF] px-2 py-1 my-2 rounded-md text-[#4F585E]'>Plain,Fluoride,Urine container</Badge>
+                <Badge className='bg-[#EEF4FF] px-2 py-1 my-2 rounded-md text-[#4F585E]'>{tubeType}</Badge>
             </div>
             <div className="flex flex-col justify-start items-start">
                 <div className="flex justify-start items-center space-x-1">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-shopping-bag text-[#4F585E]"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z" /><path d="M3 6h18" /><path d="M16 10a4 4 0 0 1-8 0" /></svg>
-                    <h2 className="font-semibold text-[#40464D] text-sm md:text-base">Package Includes : </h2>
+                    <h2 className="font-semibold text-[#40464D] text-sm md:text-base">Package Includes : {packageIncludes}</h2>
                 </div>
-                <div className="flex flex-col md:flex-row space-x-0 md:space-x-2 pl-2">
+                {/* <div className="flex flex-col md:flex-row space-x-0 md:space-x-2 pl-2">
                     <div className="flex">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-dot text-[#40464D]"><circle cx="12.1" cy="12.1" r="1" /></svg>
                         <p className="text-[#40464D] text-xs md:text-sm">Fasting Blood Sugar (FBS)</p>
@@ -77,7 +77,7 @@ const ContentDetails = () => {
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-dot text-[#40464D]"><circle cx="12.1" cy="12.1" r="1" /></svg>
                         <p className="text-[#40464D] text-xs md:text-sm">Fasting Blood Sugar (FBS)</p>
                     </div>
-                </div>
+                </div> */}
             </div>
             <div className="flex flex-col justify-start items-start">
                 <div className="flex justify-start items-center">

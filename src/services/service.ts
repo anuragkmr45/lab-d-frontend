@@ -6,7 +6,7 @@ try {
   return response.data;
 } catch (error) {
   console.error('Error while fetching all services:', error);
-  throw new Error('Failed to fetch all services. Please try again later.');
+  throw new Error('Failed to fetch all services.');
 }
 };
 

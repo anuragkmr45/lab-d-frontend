@@ -1,118 +1,117 @@
-import Link from 'next/link';
-import { Button } from '@/components/ui/button';
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
 import { FaDna } from "react-icons/fa";
 import { TbReport } from "react-icons/tb";
 import { PiCurrencyDollarBold } from "react-icons/pi";
 
-type cardDataType = {
-    key: number;
-    title: string;
-    desc: string;
-    parameters: string;
-    sampleType: string;
-    tubeType: string;
-    packageIncludes: string;
-    discountedPrice: string;
-    discountPercentage: string;
-}
+type ServiceType = {
+  serviceId: number;
+  serviceName: string;
+  serviceDesc: string;
+  testParameters: string[];
+  sampleType: string;
+  tubeType: string;
+  packageIncludes: string;
+  discountedPrice: string;
+  discountPercentage: string;
+};
 
-const CheckupTypeCard = (cardData: cardDataType) => {
-
-        const origialPricing: string =  (parseInt(cardData.discountedPrice) / (1 - parseInt(cardData.discountPercentage) / 100)).toString();
-
+const CheckupTypeCard = ({ cardData }: { cardData: ServiceType }) => {
+  
+  if (!cardData) {
     return (
-        <div className="w-full mx-auto h-60 bg-[#EDF6F9] rounded-xl  shadow-xl m-2 space-y-3">
-            <UpperCard
-                discount={cardData.discountedPrice}
-                origialPricing={origialPricing}
-                discountedPricing={cardData.discountedPrice}
-                title={cardData.title}
-            />
-            <LowerCard
-                parameters={cardData.parameters}
-            />
-        </div>
+      <div className="w-full mx-auto h-60 bg-[#EDF6F9] rounded-xl shadow-xl m-2 flex items-center justify-center">
+        <p className="text-gray-500">Data unavailable</p>
+      </div>
     );
+  }
+
+  const originalPricing: number = Math.round(
+    parseFloat(cardData.discountedPrice || "0") /
+      (1 - parseFloat(cardData.discountPercentage || "0") / 100)
+  );
+
+  return (
+    <div className="w-full mx-auto h-60 bg-[#EDF6F9] rounded-xl shadow-xl m-2 space-y-3">
+      <UpperCard
+        discount={cardData.discountPercentage || "0"}
+        originalPricing={originalPricing}
+        discountedPricing={cardData.discountedPrice || "0"}
+        title={cardData.serviceName || "Unknown"}
+      />
+      <LowerCard parameters={cardData.testParameters || []} serviceId={cardData.serviceId} />
+    </div>
+  );
 };
 
 type UpperCardProps = {
-    title: string;
-    discountedPricing: string;
-    origialPricing: string;
-    discount: string;
-}
+  title: string;
+  discountedPricing: string;
+  originalPricing: number;
+  discount: string;
+};
 
-const UpperCard = ({ title, discountedPricing, origialPricing, discount }: UpperCardProps) => {
-    return (
-        <div className="bg-gradient-to-r from-[#006D77] to-[#83C5BE] h-[106px] rounded-xl">
-            <p className="absoute top-0 bg-[#185358] m-2 mt-0 w-28 text-[#efefef] text-center rounded-b-lg ">
-                checkup
-            </p>
-            <div className="flex flex-row sm:justify-center justify-around items-center">
-                <h1 className="sm:w-[60%]  text-[14px] sm:text-[16px] sm:mt-1 text-white font-bold">
-                    {title}
-                </h1>
-                <div className="flex flex-col">
-                    <div className="flex flex-row justify-center items-center space-x-3">
-                        <p className="opacity-75 line-through text-gray-200 text-sm">₹{origialPricing}</p>
-                        <h1 className="font-semibold text-white flex items-center justify-center">
-                            <PiCurrencyDollarBold className="text-white" />
-                            {discountedPricing}
-                        </h1>
-                    </div>
-                    <p className="text-sm text-white font-semibold  w-28 h-7 flex items-center justify-center text-center rounded-md bg-green-400">
-
-                        {discount}% off
-                    </p>
-                </div>
-            </div>
+const UpperCard = ({
+  title,
+  discountedPricing,
+  originalPricing,
+  discount,
+}: UpperCardProps) => {
+  return (
+    <div className="bg-gradient-to-r from-[#006D77] to-[#83C5BE] h-[106px] rounded-xl p-4">
+      <p className="absolute top-0 bg-[#185358] m-2 mt-0 w-28 text-[#efefef] text-center rounded-b-lg">
+        Checkup
+      </p>
+      <div className="flex flex-row justify-between items-center">
+        <h1 className="text-[16px] text-white font-bold">{title}</h1>
+        <div className="flex flex-col items-end">
+          <p className="opacity-75 line-through text-gray-200 text-sm">
+            ₹{originalPricing.toFixed(2)}
+          </p>
+          <h1 className="font-semibold text-white flex items-center">
+            <PiCurrencyDollarBold className="text-white" /> {discountedPricing}
+          </h1>
+          <p className="text-sm text-white font-semibold bg-green-400 rounded-md px-2 py-1">
+            {discount}% Off
+          </p>
         </div>
-    )
+      </div>
+    </div>
+  );
 };
 
 type LowerCardProps = {
-    parameters: string;
-    link?: string;
-}
+  serviceId: number,
+  parameters: string[];
+};
 
-const LowerCard = ({ parameters, link = '/' }: LowerCardProps) => {
-    return (
-        <div className="space-y-4">
-            <div className="grid grid-cols-2 gap-3 px-4">
-                <div className="grid grid-cols-3 gap-2">
-                    <div className="col-span-1 flex items-center justify-center">
-                        <FaDna className="h-full" />
-                    </div>
-                    <div className="col-span-2 flex items-center justify-center">
-                        <div className="text-left">
-                            <p className="font-semibold text-[13px]">{parameters} parameters </p>
-                            <p className="text-[14px] "> included</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div className="grid grid-cols-3 gap-2">
-                    <div className="col-span-1 flex items-center justify-center">
-                        <TbReport className="h-full text-2xl" />
-                    </div>
-                    <div className="col-span-2 flex items-center justify-center">
-                        <div className="text-left">
-                            <p className=" text-[13px]">Reports within </p>
-                            <p className="text-[14px] font-semibold"> 7 hours</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div className="flex flex-row items-center justify-around">
-                <Link href='/organ-related/full%20body%20checkups'>
-                    <Button className=' bg-transparent font-semibold  text-[#006D77] hover:bg-[#006D77] hover:text-white shadow-sm shadow-[#006D77] transition-all duration-200 ease-in-out'> View Details</Button>
-                </Link>
-                <Link href='/book-test-deatils'>
-                    <Button className='bg-gradient-to-tr from-[#ff8153] to-[#f9d2c5] shadow-lg hover:scale-105 transition-all duration-200 ease-in-out'> Book Details</Button>
-                </Link>
-            </div>
+const LowerCard = ({ parameters, serviceId }: LowerCardProps) => {
+  return (
+    <div className="space-y-4 px-4">
+      <div className="grid grid-cols-2 gap-4">
+        <div className="flex items-center">
+          <FaDna className="text-2xl text-[#006D77] mr-2" />
+          <p className="font-semibold text-[14px]">{parameters.length} Parameters</p>
         </div>
-    )
-}
+        <div className="flex items-center">
+          <TbReport className="text-2xl text-[#006D77] mr-2" />
+          <p className="text-[14px] font-semibold">Reports in 7 hours</p>
+        </div>
+      </div>
+      <div className="flex justify-between">
+        <Link href={`/organ-related/${serviceId}`}>
+          <Button className="bg-transparent font-semibold text-[#006D77] hover:bg-[#006D77] hover:text-white shadow-md">
+            View Details
+          </Button>
+        </Link>
+        <Link href={`/book-test-deatils/${serviceId}`}>
+          <Button className="bg-gradient-to-tr from-[#ff8153] to-[#f9d2c5] shadow-lg">
+            Book Now
+          </Button>
+        </Link>
+      </div>
+    </div>
+  );
+};
 
 export default CheckupTypeCard;

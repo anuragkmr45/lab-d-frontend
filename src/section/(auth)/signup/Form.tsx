@@ -1,9 +1,11 @@
+// "validate inpiut form"
 "use client";
 
 import { useState, useEffect } from "react";
 import { redirect } from "next/navigation";
 import Link from "next/link";
 
+import {signup} from '@/services/auth';
 import { Input } from "@/components/ui/input";
 // import { Checkbox } from "@/components/ui/checkbox";
 import { Button } from "@/components/ui/button";
@@ -31,24 +33,9 @@ const Form = () => {
     const handleSingup = async () => {
         setIsLoading(true);
         try {
-            const response = await fetch("/api/auth/signup", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(formData),
-            });
-
-            if (!response.ok) {
-                const error = await response.json();
-                console.error(error);
-                return;
-            }
-
-            const data = await response.json();
-
-            if (data.status == 200) {
-                redirect("/");
+            const res = await signup(formData);
+            if(res !== null) {
+                return redirect("/signin");
             }
         } catch (error) {
             console.error(error);
@@ -57,22 +44,21 @@ const Form = () => {
         }
     }
 
-    useEffect(() => {
-        const checkAuth = async () => {
-            try {
-                const response = await fetch("/api/auth/isAuth");
-                const data = await response.json();
+    // useEffect(() => {
+    //     const checkAuth = async () => {
+    //         try {
+    //             const token = getClientToken();
+    //             if (token !== null) {
+    //                 redirect("/");
+    //             }
+    //             console.log('token: ', token)
+    //         } catch (error) {
+    //             console.error("Error checking authentication:", error);
+    //         }
+    //     };
 
-                if (data.isAuth) {
-                    redirect("/");
-                }
-            } catch (error) {
-                console.error("Error checking authentication:", error);
-            }
-        };
-
-        checkAuth();
-    }, []);
+    //     checkAuth();
+    // }, []);
 
     return (
         <div className="flex flex-col justify-around space-y-16">
@@ -152,7 +138,7 @@ const Form = () => {
                     </label>
                 </div> */}
             </div>
-            <label className="text-black text-xs">Already having an account <Link className="text-[#006D77]" href='/signin'>SignIn</Link>.</label>
+            <label className="text-black text-xs">Already having an account <Link className="text-[#006D77]" href='/auth/signin'>SignIn</Link>.</label>
             <Button disabled={false} className='bg-[#006D77] w-full shadow-md text-lg font-semibold py-6' onClick={handleSingup}>
                 {
                     isLoading ?

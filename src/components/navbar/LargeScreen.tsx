@@ -3,7 +3,9 @@
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
+import { redirect } from 'next/navigation';
+
+import { signout } from '@/services/auth';
 
 import {
     DropdownMenu,
@@ -24,7 +26,6 @@ const LargeScreenNavbar = ({ isAuth }: { isAuth: boolean }) => {
 
     const [isSticky, setSticky] = useState(false);
     const location = false;
-    const router = useRouter();
 
     const handleScroll = () => {
         const scrollPosition = window.scrollY;
@@ -33,17 +34,9 @@ const LargeScreenNavbar = ({ isAuth }: { isAuth: boolean }) => {
 
     const handleSignout = async () => {
         try {
-            const res = await fetch('/api/auth/signout', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({}),
-            });
-
-            if (res.ok) {
-                router.replace('/');
-            }
+            await signout();
+            console.log('logged out');
+            redirect('/auth/signin');
         } catch (error) {
             console.log(error);
         }
@@ -113,7 +106,7 @@ const LargeScreenNavbar = ({ isAuth }: { isAuth: boolean }) => {
                             </DropdownMenu>
 
                         ) : (
-                            <Link href="/signin">
+                            <Link href="/auth/signin">
                                 <Button variant="outline" className='space-x-2 bg-blue-200 shadow'>
                                     <RxAvatar />
                                     <span>Login</span>
