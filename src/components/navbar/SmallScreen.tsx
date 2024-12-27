@@ -1,9 +1,11 @@
 "use client"
 
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { redirect } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 
+import { getToken } from '@/lib/auth';
 import { signout } from '@/services/auth';
 
 import { IoMenuOutline } from "react-icons/io5";
@@ -29,16 +31,30 @@ import SearchBar from '@/components/searchbar';
 import { Button } from '../ui/button';
 
 
-const SmallScreenNavbar = ({ isAuth }: { isAuth: boolean }) => {
+const SmallScreenNavbar = () => {
+
+    
+    const [isAuth, setIsAuth] = useState(false);
+    const router = useRouter();
 
     const handleLogout = async () => {
         try {
             await signout();
-            redirect('/auth/signin');
+            router.replace('/auth/signin');
         } catch (error) {
             console.log(error);
         }
     }
+    
+        useEffect(() => {
+            const handleGetTokewn = async () => {
+                const token = await getToken();
+                const isTokenPresent: boolean = token !== null ? true : false;
+                setIsAuth(isTokenPresent);
+            }
+    
+            handleGetTokewn();
+        }, []);
 
     return (
         <Sheet>
@@ -66,7 +82,7 @@ const SmallScreenNavbar = ({ isAuth }: { isAuth: boolean }) => {
                                     <AnimatedSubscribeButtonDemo />
                                 </section>
                                 <section className='mt-10'>
-                                    <Link href="/about">
+                                    <Link href="/">
                                         <div className='h-12 flex items-center space-x-2'>
                                             <CiHome />
                                             <span>Home</span>
@@ -82,7 +98,7 @@ const SmallScreenNavbar = ({ isAuth }: { isAuth: boolean }) => {
                                                 </div>
                                             </Link>
                                         ) : (
-                                            <Link href="/signin">
+                                            <Link href="/auth/signin">
                                                 <div className='h-12 flex items-center space-x-2'>
                                                     <FiLogIn />
                                                     <span>Log In or Register</span>
@@ -98,14 +114,14 @@ const SmallScreenNavbar = ({ isAuth }: { isAuth: boolean }) => {
                                         </div>
                                     </Link>
                                     <Separator />
-                                    <Link href="/my-bookings">
+                                    <Link href="/dashboard/my-bookings">
                                         <div className='h-12 flex items-center space-x-2'>
                                             <BiClinic />
                                             <span>My Bookings</span>
                                         </div>
                                     </Link>
                                     <Separator />
-                                    <Link href="/health-record">
+                                    <Link href="/dashboard/health-record">
                                         <div className='h-12 flex items-center space-x-2'>
                                             <RiHealthBookLine />
                                             <span>Health Records</span>

@@ -3,8 +3,9 @@
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { redirect } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 
+import { getToken } from '@/lib/auth';
 import { signout } from '@/services/auth';
 
 import {
@@ -22,10 +23,12 @@ import { IoLocationOutline } from "react-icons/io5";
 import { SiWhatsapp } from "react-icons/si";
 import { RxAvatar } from "react-icons/rx";
 
-const LargeScreenNavbar = ({ isAuth }: { isAuth: boolean }) => {
+const LargeScreenNavbar = () => {
 
     const [isSticky, setSticky] = useState(false);
+    const [isAuth, setIsAuth] = useState(false);
     const location = false;
+    const router = useRouter();
 
     const handleScroll = () => {
         const scrollPosition = window.scrollY;
@@ -35,8 +38,7 @@ const LargeScreenNavbar = ({ isAuth }: { isAuth: boolean }) => {
     const handleSignout = async () => {
         try {
             await signout();
-            console.log('logged out');
-            redirect('/auth/signin');
+            router.replace('/auth/signin');
         } catch (error) {
             console.log(error);
         }
@@ -47,6 +49,17 @@ const LargeScreenNavbar = ({ isAuth }: { isAuth: boolean }) => {
         return () => {
             window.removeEventListener('scroll', handleScroll);
         };
+
+    }, []);
+
+    useEffect(() => {
+        const handleGetTokewn = async () => {
+            const token = await getToken();
+            const isTokenPresent: boolean = token !== null ? true : false;
+            setIsAuth(isTokenPresent);
+        }
+
+        handleGetTokewn();
     }, []);
 
     const navbarStickyEffect = isSticky ?
@@ -95,19 +108,19 @@ const LargeScreenNavbar = ({ isAuth }: { isAuth: boolean }) => {
                                 </DropdownMenuTrigger>
                                 <DropdownMenuContent>
                                     <DropdownMenuItem>My Account</DropdownMenuItem>
-                                    <DropdownMenuItem>Health Record</DropdownMenuItem>
-                                    <DropdownMenuItem>My Booking</DropdownMenuItem>
+                                    <DropdownMenuItem><Link href='/dashboard/health-record'>Health Record</Link></DropdownMenuItem>
+                                    <DropdownMenuItem><Link href='/dashboard/my-bookings'>My Bookings</Link></DropdownMenuItem>
                                     <DropdownMenuItem>Need Help</DropdownMenuItem>
                                     <DropdownMenuSeparator />
                                     <DropdownMenuItem>
-                                        <button onClick={handleSignout} className='font-medium text-red-500'>Logout</button>
+                                        <Button onClick={handleSignout} className='font-medium text-red-500'>Logout</Button>
                                     </DropdownMenuItem>
                                 </DropdownMenuContent>
                             </DropdownMenu>
 
                         ) : (
                             <Link href="/auth/signin">
-                                <Button variant="outline" className='space-x-2 bg-blue-200 shadow'>
+                                <Button variant="outline" className='space-x-2 bg-blue-200 shadow' >
                                     <RxAvatar />
                                     <span>Login</span>
                                 </Button>

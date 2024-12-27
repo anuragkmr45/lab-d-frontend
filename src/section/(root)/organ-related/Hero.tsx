@@ -49,8 +49,8 @@ const HeroSection = () => {
                                     <feGaussianBlur stdDeviation="12.5" result="effect1_foregroundBlur_140_2981" />
                                 </filter>
                                 <linearGradient id="paint0_linear_140_2981" x1="42.25" y1="175" x2="146.5" y2="38.5" gradientUnits="userSpaceOnUse">
-                                    <stop stop-color="#016D77" />
-                                    <stop offset="1" stop-color="#EAF4F5" />
+                                    <stop stopColor="#016D77" />
+                                    <stop offset="1" stopColor="#EAF4F5" />
                                 </linearGradient>
                             </defs>
                         </svg>
@@ -68,8 +68,8 @@ const HeroSection = () => {
                                     <feGaussianBlur stdDeviation="12.5" result="effect1_foregroundBlur_140_2981" />
                                 </filter>
                                 <linearGradient id="paint0_linear_140_2981" x1="42.25" y1="175" x2="146.5" y2="38.5" gradientUnits="userSpaceOnUse">
-                                    <stop stop-color="#016D77" />
-                                    <stop offset="1" stop-color="#EAF4F5" />
+                                    <stop stopColor="#016D77" />
+                                    <stop offset="1" stopColor="#EAF4F5" />
                                 </linearGradient>
                             </defs>
                         </svg>

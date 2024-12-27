@@ -1,11 +1,12 @@
 // "validate inpiut form"
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { redirect } from "next/navigation";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
-import {signup} from '@/services/auth';
+import { signup } from '@/services/auth';
 import { Input } from "@/components/ui/input";
 // import { Checkbox } from "@/components/ui/checkbox";
 import { Button } from "@/components/ui/button";
@@ -25,6 +26,7 @@ const Form = () => {
     });
     const [passToggle, setPassToggle] = useState<boolean>(false);
     const [isLoading, setIsLoading] = useState(false);
+    const router = useRouter();
 
     const handleTogglePass = () => {
         setPassToggle(!passToggle);
@@ -33,32 +35,15 @@ const Form = () => {
     const handleSingup = async () => {
         setIsLoading(true);
         try {
-            const res = await signup(formData);
-            if(res !== null) {
-                return redirect("/signin");
-            }
+            await signup(formData);
+            return router.replace("/auth/signin");
+
         } catch (error) {
             console.error(error);
         } finally {
             setIsLoading(false);
         }
     }
-
-    // useEffect(() => {
-    //     const checkAuth = async () => {
-    //         try {
-    //             const token = getClientToken();
-    //             if (token !== null) {
-    //                 redirect("/");
-    //             }
-    //             console.log('token: ', token)
-    //         } catch (error) {
-    //             console.error("Error checking authentication:", error);
-    //         }
-    //     };
-
-    //     checkAuth();
-    // }, []);
 
     return (
         <div className="flex flex-col justify-around space-y-16">

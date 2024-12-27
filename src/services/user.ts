@@ -20,14 +20,14 @@ const updateProfile = async (profileData: any) => {
     }
 };
 
-const deleteProfile = async () => {
-    try {
-        const response = await apiClient.delete('/profile');
-        return response.data;
-    } catch (error) {
-        console.error('Error while deletinging user:', error);
-        throw new Error('Failed to delete user. Please try again later.');
-    }
-};
+// const deleteProfile = async () => {
+//     try {
+//         const response = await apiClient.delete('/profile');
+//         return response.data;
+//     } catch (error) {
+//         console.error('Error while deletinging user:', error);
+//         throw new Error('Failed to delete user. Please try again later.');
+//     }
+// };
 
-export { getProfile, updateProfile, deleteProfile };
+export { getProfile, updateProfile };

@@ -17,14 +17,14 @@ const BookTestDetails = async ({ params }: { params: any }) => {
         <main className="flex relative w-full h-full">
             <aside className="w-full space-y-8 lg:w-2/3 px-4 md:px-8">
                 <Hero serviceName={res?.serviceName} serviceDesc={res.serviceDesc} />
-                <ContentDetails sampleType={res?.sampleType} tubeType={res?.tubeType} packageIncludes={res?.packageIncludes} testParameters={res?.testParameters} />
+                <ContentDetails sampleType={res?.sampleType} tubeType={res?.tubeType} packageIncludes={res?.packageIncludes} testParameters={res?.testParameters} discountedPrice={res?.discountedPrice} discountPercentage={res?.discountPercentage} serviceId={res?.serviceId} />
                 <SimilarPackage />
                 <OverView />
                 <Testimonial />
             </aside>
             <aside className="hidden lg:block md:w-1/3 fixed right-0 top-14 p-4 h-full z-10 space-y-4">
                 <div className=' bg-[#EDF6F9] p-4 rounded-lg'>
-                    <PricingSection discountedPrice={res?.discountedPrice} discountPercentage={res?.discountPercentage} />
+                    <PricingSection discountedPrice={res?.discountedPrice} discountPercentage={res?.discountPercentage} serviceId={res?.serviceId} />
                 </div>
                 <div className=' bg-[#EDF6F9] p-4 rounded-lg'>
                     <QuickLinks />

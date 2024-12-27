@@ -1,8 +1,8 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Link from "next/link";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 
 import { signin } from "@/services/auth";
 
@@ -29,30 +29,15 @@ const Form = () => {
     const handleSignin = async () => {
         setIsLoading(true);
         try {
-            await signin(formData.email, formData.password);
-            router.push('/');
+            // const res = await signin(formData.email, formData.password);
+            await signin("abcd@abcd.com", "Abcd@12345");
+            router.replace("/");
         } catch (error) {
             console.error(error);
         } finally {
             setIsLoading(false);
         }
     }
-
-    // useEffect(() => {
-    //     const checkAuth = async () => {
-    //         try {
-    //             const token = getClientToken();
-    //             if (token !== null) {
-    //                 redirect("/");
-    //             }
-    //             console.log('token: ', token)
-    //         } catch (error) {
-    //             console.error("Error checking authentication:", error);
-    //         }
-    //     };
-
-    //     checkAuth();
-    // }, []);
 
     return (
         <div className="flex flex-col justify-around space-y-16">

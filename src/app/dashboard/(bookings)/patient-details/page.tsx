@@ -1,11 +1,22 @@
-import React from 'react'
+// 'use client';
 
-const PatientDetails = () => {
-    return (
-        <div>
-            PatientDetails
-        </div>
-    )
-}
+// import {useState} from 'react';
+// import { useSearchParams } from 'next/navigation';
 
-export default PatientDetails
+// const PatientDetails = () => {
+//     const searchParams = useSearchParams();
+//     const serviceId = searchParams.get('serviceId');
+//     const locationId = searchParams.get('locationId');
+//     console.log("serviceId", serviceId);
+//     console.log("locationId", locationId);
+
+//     const [paymanetStatus, setPaymentStatus] = useState(false);
+
+//     return (
+//         <div>
+            
+//         </div>
+//     )
+// }
+
+// export default PatientDetails

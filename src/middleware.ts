@@ -3,17 +3,22 @@
 import { NextRequest, NextResponse } from 'next/server';
 
 export function middleware(req: NextRequest) {
-  const token = req.cookies.get('auth_token'); // Retrieve token from cookies
+  const token = req.cookies.get('auth_token');
   const { pathname } = req.nextUrl;
 
   // Protect dashboard routes
   if (pathname.startsWith('/dashboard') && !token) {
-    return NextResponse.redirect(new URL('/auth', req.url));
+    return NextResponse.redirect(new URL('/auth/signin', req.url));
   }
 
+  // Protect auth routes
+  // if (pathname.startsWith('/auth') && token) {
+  //   return NextResponse.redirect(new URL('/', req.url));
+  // }
+
   // Redirect logged-in users away from auth pages
-  if ((pathname.startsWith('/auth') || pathname.startsWith('/auth')) && token) {
-    const referer = req.headers.get('referer') || '/'; // Default redirect to /dashboard
+  if (pathname.startsWith('/auth') && token) {
+    const referer = req.headers.get('referer') || '/';
     return NextResponse.redirect(new URL(referer, req.url));
   }
 
@@ -21,5 +26,5 @@ export function middleware(req: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/dashboard/:path*', '/auth'], // Define protected paths
+  matcher: ['/dashboard/:path*', '/auth'],
 };

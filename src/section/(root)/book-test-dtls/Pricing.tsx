@@ -1,15 +1,16 @@
-import Image from "next/image";
+"use client";
+
+import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-// import { Button } from "@/components/ui/button";
-import ShinyButton from "@/components/magicui/shiny-button";
+import { Button } from "@/components/ui/button";
 
-const BookCard = ({discountedPrice, discountPercentage}: {discountedPrice: string, discountPercentage: string}) => {
+const BookCard = ({ discountedPrice, discountPercentage, serviceId }: { discountedPrice: string, discountPercentage: string, serviceId: number }) => {
 
     const originalPricing: number = Math.round(
         parseFloat(discountedPrice || "0") /
-          (1 - parseFloat(discountPercentage || "0") / 100)
-      );
+        (1 - parseFloat(discountPercentage || "0") / 100)
+    );
 
     return (
         <main className="space-y-8">
@@ -31,10 +32,15 @@ const BookCard = ({discountedPrice, discountPercentage}: {discountedPrice: strin
                         </Badge>
                     </div>
                     <div className="flex items-center justify-center">
-                        {/* <Button className='bg-gradient-to-tr from-[#E29578] from-50% to-[#FFDDD2] shadow-lg'>
-                            Book Now
-                        </Button> */}
-                        <ShinyButton text="Shiny Button" className="bg-gradient-to-tr from-[#E29578] from-40% to-[#FFDDD2] shadow-lg py-4 border-none text-white" />
+                        <Link href={{
+                            pathname: '/dashboard/location',
+                            query: { serviceId: serviceId }
+                        }}>
+                            <Button className='bg-gradient-to-tr from-[#E29578] from-50% to-[#FFDDD2] shadow-lg'>
+                                Book Now
+                            </Button>
+                        </Link>
+                        {/* <ShinyButton text="Shiny Button" className="bg-gradient-to-tr from-[#E29578] from-40% to-[#FFDDD2] shadow-lg py-4 border-none text-white" /> */}
                     </div>
                 </div>
             </section>

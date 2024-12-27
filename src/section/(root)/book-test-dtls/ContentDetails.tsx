@@ -11,7 +11,7 @@ import {
 import PricingSection from './Pricing';
 import QuickLinks from './QuickLinks';
 
-const ContentDetails = ({sampleType,tubeType, packageIncludes, testParameters}: {sampleType: string,tubeType: string, packageIncludes: string, testParameters: string[]}) => {
+const ContentDetails = ({sampleType,tubeType, packageIncludes, testParameters,discountedPrice, discountPercentage, serviceId}: {sampleType: string,tubeType: string, packageIncludes: string, testParameters: string[], discountedPrice: string, discountPercentage: string, serviceId: number}) => {
     return (
         <div className='border-2 border-[#DFE3E6] rounded-lg p-2'>
             <div className='block lg:hidden'>
@@ -22,7 +22,7 @@ const ContentDetails = ({sampleType,tubeType, packageIncludes, testParameters}: 
                     <DrawerContent>
                         <section>
                             <div className=' bg-[#EDF6F9] p-4 rounded-lg'>
-                                <PricingSection />
+                                <PricingSection discountedPrice={discountedPrice} discountPercentage={discountPercentage} serviceId={serviceId} />
                             </div>
                             <div className=' bg-[#EDF6F9] p-4 rounded-lg'>
                                 <QuickLinks />

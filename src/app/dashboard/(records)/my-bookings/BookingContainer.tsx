@@ -1,31 +1,41 @@
-"use client";
-
-import { useState, useEffect } from "react";
-import { getAllBookings, deleteBooking } from '@/services/booking';
+import { getAllBookings } from '@/services/booking';
 import MyBookingCard from "@/components/cards/booking-card/MyBookings"
 
-const BookingContainer = () => {
+const BookingContainer = async () => {
+    const res = await getAllBookings();
+    // console.log('bookings:', res);
 
-    const [bookings, setBookings] = useState([]);
+    type TestService = {
+        serviceName: string;
+        testParameters: any[];
+      };
 
-
-    useEffect(() => {
-        const fetchBookings = async () => {
-            try {
-                const res = await getAllBookings();
-                setBookings(res);
-                console.log('bookings:', res);
-            } catch (error) {
-                console.error("Error fetching bookings:", error);
-            }
-        }
-
-        fetchBookings();
-    }, []);
+    type BookingUnitType ={
+        bookingId: number,
+        userId: string,
+        date: string,
+        time: string,
+        reportStatus: string,
+        paymentStatus: string,
+        collectionLocation: string,
+        services: TestService,
+      }
 
 
     return (
-        <div>BookingContainer</div>
+        <div>
+            <h1>My Bookings</h1>
+            <div>
+
+                {
+                    res.map((booking: BookingUnitType) => {
+                        return(
+                            <MyBookingCard key={booking.bookingId} bookingData={booking} />
+                        )
+                    })
+                }
+            </div>
+        </div>
     )
 }
 
